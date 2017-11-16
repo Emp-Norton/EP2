@@ -3,8 +3,6 @@ var express = require('express');
 var app = express();
 var request = require('request');
 
-var url = 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9A18D3958AB5672125F3540187C68728&steamids=76561198254047403'
-
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
