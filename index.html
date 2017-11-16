@@ -1,14 +1,26 @@
+
 <!DOCTYPE html>
 <html>
+  
   <head>
     <script src="jquery.js"></script>
     <script src="steamCall.js"></script>
+    <link rel="stylesheet" type="text/css" href="squadFindr.css">
+    <title>Player Information Page</title>
   </head>
+
   <body>
-    <div id="results"></div>
-     <div id="profileViewer"></div>
-    <script>
-      loadXML();
-    </script>
+    <h1>Player Info and Profile for: <span id="playerName"></span></h1>
+    <div id="searchResults">
+      <div id="playerInfo"></div>
+      <div id="profileViewer"></div>
+    </div>
+  
   </body>
+
+  <script>
+    loadXML();
+  </script>
+
 </html>
+
