@@ -1,0 +1,27 @@
+body {
+	text-align: center;
+}
+h1 {
+
+}
+
+
+#profileObject {
+	width: 400px; 
+	height: 555px;
+	overflow:auto;
+	border:5px ridge blue;
+	border-radius: 5% 0% 0% 5%;
+}
+#profileViewer {
+	
+}
+#playerInfo {
+	width: 400px;
+	border: 5px ridge blue;
+}
+#searchResults {
+	display: inline-block;
+	text-align: center;
+	
+}
