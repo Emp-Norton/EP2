@@ -9,7 +9,8 @@ app.all('/*', function(req, res, next) {
   next();
 });
 
-app.get('/steam/:id', function(httpRequest, httpResponse) {
+
+app.get('/profile/:id', function(httpRequest, httpResponse) {
     var id = httpRequest.params.id;
     var url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9A18D3958AB5672125F3540187C68728&steamids=${id}`;
     request.get(url, function(error, steamHttpResponse, steamHttpBody) {
@@ -17,6 +18,17 @@ app.get('/steam/:id', function(httpRequest, httpResponse) {
         httpResponse.send(steamHttpBody);
     });
 });
+
+
+app.get('/friends/:id', function(httpRequest, httpResponse){
+  var id = httpRequest.params.id;
+  var url = `https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=9A18D3958AB5672125F3540187C68728&steamid=${id}`;
+  request.get(url, function(error, steamHttpResponse, steamHttpBody){
+    httpResponse.setHeader('Content-Type', 'application/json');
+    httpResponse.send(steamHttpBody);
+  });
+});
+
 
 var port = 4000;
 var server = app.listen(port);
