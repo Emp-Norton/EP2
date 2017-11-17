@@ -7,16 +7,19 @@
     <script src="playerClass.js"></script>
     <script src="steamCall.js"></script>
     <link rel="stylesheet" type="text/css" href="squadFindr.css">
-    <title>Player Information Page</title>
+    <title> Player Information Page</title>
   </head>
 
   <body>
-    <h1>Player Info and Profile for: <span id="playerName"></span></h1>
+    <h1>76561198254047403 Player Info and Profile for: <span id="playerName"></span></h1>
     <div id="searchResults">
-      <div id="playerInfo"></div>
+      <div id="playerInfo">
+        <hr><div id="playerFriends"></div>
+        <hr><div id="playerGames"></div>
+      </div>
       <div id="playerSearch">
         <input type="text" id="playerSearchField" placeholder="Enter Steam UserID"></input>
-        <button onclick="renderResults()">Search</button>
+        <button onclick="loadXML($('#playerSearchField').val(), 'profile')">Search</button>
       </div>
       <div id="profileViewer"></div>
     </div>
