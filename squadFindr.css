@@ -18,16 +18,30 @@ h1 {
 	border:5px ridge blue;
 	border-radius: 5% 0% 0% 5%;
 }
+
 #profileViewer {
 	float: left;
 }
+
+#playerFriends {
+	float: left;
+	width: 400px;
+}
+
+#playerGames {
+	float: left;
+	width: 400px;
+}
+
 #playerInfo {
+	margin-right: 15px;
 	float: left;
 	width: 400px;
 	border: 5px ridge blue;
+	border-radius: 5%;
 }
+
 #searchResults {
 	display: inline-block;
-	text-align: center;
-	
+	text-align: center;	
 }
