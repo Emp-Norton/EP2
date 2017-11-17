@@ -1,6 +1,6 @@
 
-var loadXML = function(){
-  var id = '76561198254047403' // prompt("Please enter user Steam ID");
+var loadXML = function(userId){
+  var id = userId; //'76561198254047403'
   var url = 'http://localhost:4000/steam/' + id;
   var xhttp = new XMLHttpRequest();
   var relevantFields = ["personaname", "lastlogoff", "profileurl"];
@@ -22,6 +22,13 @@ var loadXML = function(){
   
   xhttp.open("GET", url, true);
   xhttp.send();
+}
+
+var renderResults = function(){
+  loadXML($('#playerSearchField').val());
+  $('#playerInfo').show();
+  $('#profileViewer').show();
+  $('#playerSearch').hide();
 }
 
 
