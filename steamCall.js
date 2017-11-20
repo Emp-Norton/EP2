@@ -26,9 +26,11 @@ var loadXML = function(id, type){
         });
         getFriends(id);
         getGames(id);
+        renderResults();
       } else {
         var response = JSON.parse(this.response)[`${id}`]
         gameNames.push(response.data.name);
+        $('#playerGames').prepend(`<p>${response.data.name}</p>`)
       }
     }
   };
