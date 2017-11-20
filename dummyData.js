@@ -54,7 +54,7 @@ player3.uPlayId= "2222";
 player3.games= {
 			steam: ["Company of Heroes 2", "Mount & Blade= Warband", "The Witcher® 3= Wild Hunt", "Fallout 4", "Just Cause™ 3", "Day of Infamy", "Project CARS"],
 			uplay: [],
-			android: [],
+			android: ["alto"],
 			xbox: [],
 			playstation: [],
 		};
