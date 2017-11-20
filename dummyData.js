@@ -23,7 +23,7 @@ player1.attrWeights = {
 			platformOverlap: 3,
 			games: 4,
 			typicalDuration: 5,
-			mods: 6
+			noMods: 6
 		}
 
 
@@ -46,9 +46,9 @@ player2.attrWeights = {
 			peakHrs: 1,
 			personality: 3,
 			platformOverlap: 4,
-			games: 2,
-			typicalDuration: 5,
-			mods: 6
+			games: 5,
+			typicalDuration: 1,
+			noMods: 6
 		}
 
 
@@ -59,10 +59,18 @@ player3.games= {
 			steam: ["Company of Heroes 2", "Mount & Blade= Warband", "The Witcher® 3= Wild Hunt", "Fallout 4", "Just Cause™ 3", "Day of Infamy", "Project CARS"],
 			uplay: [],
 			android: ["alto"],
-			xbox: [],
+			xbox: ["Tony Hawk Skates"],
 			playstation: [],
 		};
 player3.personality= ["silly", "independent"];
 player3.peakHrs= [0400, 1130];
 player3.typicalDuration= 75;
 player3.noMods= true;
+player3.attrWeights = {
+			peakHrs: 1,
+			personality: 3,
+			platformOverlap: 4,
+			games: 2,
+			typicalDuration: 1,
+			noMods: 6
+		}
