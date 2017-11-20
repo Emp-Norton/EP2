@@ -13,18 +13,18 @@ var Player = function(name){
 			playstation: [],
 		},
 		personality: [],
-		friends: [],
+		// friends: [],
 		peakHrs: [],
 		typicalDuration: undefined,
 		noMods: undefined,
-		attrWeights: {
+		/*attrWeights: {
 			availability: undefined,
 			personality: undefined,
 			playformOverlap: undefined,
 			gameOverlap: undefined,
 			duration: undefined,
 			mods: undefined
-		}
+		}*/
 	}
 	player.name = name;
 	return player
