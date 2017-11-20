@@ -1,6 +1,6 @@
 var playerMatch = function(player1, player2){
 
-	var threshhold = 40;
+	var threshhold = 30;
 	var matchHits = {};
 	var ignore = ["uname", "steamId", "uPlayId", "name", "attrWeights", "friends"];
 
@@ -20,7 +20,6 @@ var playerMatch = function(player1, player2){
 				}
 			}
 		}
-		//console.log(`Total matches: ${matchHits}`);
 	}
 	console.log(JSON.stringify(matchHits))
 	var results = evaluatePriorities(matchHits, player1.attrWeights, player2.attrWeights);
@@ -76,8 +75,10 @@ var platformOverlap = function(p1, p2, platform){
 
 var evaluatePriorities = function(matches, p1prefs, p2prefs){
 	var p1weighted = {};
+	var p1total = 0;
 	var p2weighted = {};
-	console.log(matches, p1prefs)
+	var p2total = 0;
+	console.log(matches)
 	for (var key in p1prefs){
 		if (matches.hasOwnProperty(key)){
 			p1weighted[key] = matches[key] * p1prefs[key];
@@ -85,5 +86,10 @@ var evaluatePriorities = function(matches, p1prefs, p2prefs){
 		}
 	}
 
-	return [p1weighted, p2weighted]
+	for (var key in p1weighted){ // reduce?
+		p1total += p1weighted[key];
+		p2total += p2weighted[key];
+	}
+
+	console.log(`Player 1 Matched? ${p1total >= 9}. Player 2 Matched? ${p2total >= 9}`)
 }
