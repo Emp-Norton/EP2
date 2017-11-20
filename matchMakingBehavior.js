@@ -1,8 +1,8 @@
 var playerMatch = function(player1, player2){
 
-	var threshhold = 75;
-	var matchHits = 0; 
-	var ignore = ["uname", "steamId", "uPlayId", "name"];
+	var threshhold = 40;
+	var matchHits = {};
+	var ignore = ["uname", "steamId", "uPlayId", "name", "attrWeights", "friends"];
 
 	for (var key in player1){
 		if (ignore.includes(key) == false){
@@ -10,14 +10,21 @@ var playerMatch = function(player1, player2){
 				var result = dynamicMatch(player1[key], player2[key]);
 				console.log(`Key: ${key} - Result: ${result}`)
 				if (result * 100 >= threshhold){
-					matchHits += 1;
+					(matchHits[key]) ? matchHits[key] += 1 : matchHits[key] = 1;
 				}
 			} else {
 				var result = primitiveMatch(player1[key], player2[key])
-				console.log(`Key: ${key} - Result: ${result}`)
+				if (result){
+				  (matchHits[key]) ? matchHits[key] += 1 : matchHits[key] = 1;
+				  console.log(`Key: ${key} - Result: ${result}`)
+				}
 			}
 		}
+		//console.log(`Total matches: ${matchHits}`);
 	}
+	console.log(JSON.stringify(matchHits))
+	var results = evaluatePriorities(matchHits, player1.attrWeights, player2.attrWeights);
+	console.log(results)
 
 }
 
@@ -25,13 +32,13 @@ var primitiveMatch = function(p1prop, p2prop){
 	if (typeof p1prop == "boolean"){
 		return (p1prop == p2prop) 
 	} else {
-		var diff = Math.abs(p1prop - p2prop);
-		var ratioDiff = Math.min.apply(null, [p1prop, p2prop]) / diff;
-		return ratioDiff
+		var ratio = Math.min.apply(null, [p1prop, p2prop]) / Math.max.apply(null, [p1prop, p2prop])
+		return ratio
 	}
 }
 
 var dynamicMatch = function(p1obj, p2obj){
+	var gameCount = 0;
 	var maxLength = Math.max.apply(null, [p1obj.length, p2obj.length]);
 	var overlapRatio;
 	var matchedElements = [];
@@ -48,11 +55,12 @@ var dynamicMatch = function(p1obj, p2obj){
 	} else {
 			for (var nestedIdx in p1obj){
 			  var result = dynamicMatch(p1obj[nestedIdx], p2obj[nestedIdx]);
-			  console.log(`platform : ${nestedIdx} - Result ${result}`)
-			  matchAvgs.push(result)
+			  console.log(`platform : ${nestedIdx} - Result ${result} - ${p1obj[nestedIdx].length}`)
+			  matchAvgs.push(result * Math.max.apply(null, [p1obj[nestedIdx].length, p2obj[nestedIdx].length]))
+			  gameCount += Math.max.apply(null, [p1obj[nestedIdx].length, p2obj[nestedIdx].length]);
 			}
 	}
-	var result = matchAvgs.filter(Boolean).reduce((sum, num) => sum += num) / matchAvgs.length;
+	var result = matchAvgs.filter(Boolean).reduce((sum, num) => sum += num) / gameCount;
 	return result
 }
 
@@ -64,4 +72,18 @@ var totalGameOverlap = function(p1, p2){
 var platformOverlap = function(p1, p2, platform){
 	var platformOverlap = dynamicMatch(p1.games[platform], p2.games[platform]);
 	return platformOverlap
+}
+
+var evaluatePriorities = function(matches, p1prefs, p2prefs){
+	var p1weighted = {};
+	var p2weighted = {};
+	console.log(matches, p1prefs)
+	for (var key in p1prefs){
+		if (matches.hasOwnProperty(key)){
+			p1weighted[key] = matches[key] * p1prefs[key];
+			p2weighted[key] = matches[key] * p2prefs[key];
+		}
+	}
+
+	return [p1weighted, p2weighted]
 }
