@@ -2,32 +2,40 @@ var playerMatch = function(player1, player2){
 
 	var threshhold = 75;
 	var matchHits = 0; 
+	var ignore = ["uname", "steamId", "uPlayId", "name"];
 
 	for (var key in player1){
-		if (typeof player1[key] == "object"){
-			var result = dynamicMatch(player1[key], player2[key]);
-			console.log(`Key: ${key} - Result: ${result}`)
-			if (result * 100 >= threshhold){
-				matchHits += 1;
+		if (ignore.includes(key) == false){
+			if (typeof player1[key] == "object"){
+				var result = dynamicMatch(player1[key], player2[key]);
+				console.log(`Key: ${key} - Result: ${result}`)
+				if (result * 100 >= threshhold){
+					matchHits += 1;
+				}
+			} else {
+				var result = primitiveMatch(player1[key], player2[key])
+				console.log(`Key: ${key} - Result: ${result}`)
 			}
-		} else {
-			staticMatch(player1[key], player2[key])
 		}
 	}
 
 }
 
-
-
-var staticMatch = function(p1prop, p2prop){
-	if (p1prop == p2prop) return true 
-	return false 
+var primitiveMatch = function(p1prop, p2prop){
+	if (typeof p1prop == "boolean"){
+		return (p1prop == p2prop) 
+	} else {
+		var diff = Math.abs(p1prop - p2prop);
+		var ratioDiff = Math.min.apply(null, [p1prop, p2prop]) / diff;
+		return ratioDiff
+	}
 }
 
 var dynamicMatch = function(p1obj, p2obj){
 	var maxLength = Math.max.apply(null, [p1obj.length, p2obj.length]);
 	var overlapRatio;
 	var matchedElements = [];
+	var matchAvgs = [];
 	var isArray = p1obj.constructor.toString().split(" ").includes("Array()");
 	if (isArray){
 		for (var idx = 0; idx < maxLength; idx++){
@@ -38,7 +46,6 @@ var dynamicMatch = function(p1obj, p2obj){
 		return (matchedElements.length) ? matchedElements.length / maxLength : 0
 
 	} else {
-		var matchAvgs = [];
 			for (var nestedIdx in p1obj){
 			  var result = dynamicMatch(p1obj[nestedIdx], p2obj[nestedIdx]);
 			  console.log(`platform : ${nestedIdx} - Result ${result}`)
