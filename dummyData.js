@@ -17,6 +17,14 @@ player1.personality= ["serious", "independent"];
 player1.peakHrs= [1800, 1900, 2000];
 player1.typicalDuration= 350;
 player1.noMods= false
+player1.attrWeights = {
+			peakHrs: 1,
+			personality: 2,
+			platformOverlap: 3,
+			games: 4,
+			typicalDuration: 5,
+			mods: 6
+		}
 
 
 
@@ -34,9 +42,15 @@ player2.personality= ["serious", "cooperative"];
 player2.peakHrs= [0100, 0200, 1800];
 player2.typicalDuration= 100;
 player2.noMods= true;
+player2.attrWeights = {
+			peakHrs: 1,
+			personality: 3,
+			platformOverlap: 4,
+			games: 2,
+			typicalDuration: 5,
+			mods: 6
+		}
 
-
-	
 
 player3.uname = "Scare-odactyl";
 player3.steamId= "1111";
