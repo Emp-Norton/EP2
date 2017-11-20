@@ -15,15 +15,10 @@ player1.games= {
 		};
 player1.personality= ["serious", "independent"];
 player1.peakHrs= [1800, 1900, 2000];
-player1.typicalDuration= 3.5;
-player1.noMods= false,
-player1.attrWeights= {
-			availability: undefined,
-			duration: undefined,
-			personality: undefined,
-			gameOverlap: undefined,
-			mods: undefined
-		}
+player1.typicalDuration= 350;
+player1.noMods= false
+
+
 
 player2.uname = "Ognib Bognib";
 player2.steamId= "4321";
@@ -37,15 +32,10 @@ player2.games= {
 		};
 player2.personality= ["serious", "cooperative"];
 player2.peakHrs= [0100, 0200, 1800];
-player2.typicalDuration= 1;
-player2.noMods= true,
-player2.attrWeights= {
-			availability: undefined,
-			duration: undefined,
-			personality: undefined,
-			gameOverlap: undefined,
-			mods: undefined
-		}
+player2.typicalDuration= 100;
+player2.noMods= true;
+
+
 	
 
 player3.uname = "Scare-odactyl";
@@ -60,13 +50,5 @@ player3.games= {
 		};
 player3.personality= ["silly", "independent"];
 player3.peakHrs= [0400, 1130];
-player3.typicalDuration= 0.75;
-player3.noMods= true,
-player3.attrWeights= {
-			availability: undefined,
-			duration: undefined,
-			personality: undefined,
-			gameOverlap: undefined,
-			mods: undefined
-		}
-	
+player3.typicalDuration= 75;
+player3.noMods= true;
