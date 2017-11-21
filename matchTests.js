@@ -98,5 +98,15 @@ for (var key in player1.attrWeights){
 }
 var unweighted = JSON.stringify(playerMatch(player1, player2));
 assertEquals(false, weighted == unweighted, "It gets different results for empty attrWeights array than default values.");
-
 console.log("------------------");
+
+console.log("Testing no-match conditions.");
+assertEquals(JSON.stringify([false, false]), JSON.stringify(playerMatch(player1, player3)), "It should never match players without any games in common.");
+player3.games= {
+			steam: [],
+			uplay: [],
+			android: [],
+			xbox: [],
+			playstation: [],
+		};
+assertEquals(JSON.stringify([false, false]), JSON.stringify(playerMatch(player1, player3)), "It should never match players without any games in common.");
