@@ -26,10 +26,10 @@ player1.peakHrs= [1800, 1900, 2000];
 player1.typicalDuration= 350;
 player1.noMods= false
 player1.attrWeights = {
-			peakHrs: 1,
-			personality: 2,
+			peakHrs: 5,
+			personality: 4,
 			platformOverlap: 3,
-			games: 4,
+			games: 2,
 			typicalDuration: 5,
 			noMods: 6
 		}
@@ -83,6 +83,7 @@ player3.attrWeights = {
 			noMods: 6
 		}
 
+
 console.log("Testing self-matching:");
 for (var playerIdx = 0; playerIdx < players.length; playerIdx++){
 	assertEquals(JSON.stringify([true, true]), JSON.stringify(playerMatch(players[playerIdx], players[playerIdx])), 
@@ -93,8 +94,8 @@ console.log("------------------");
 console.log("Testing attribute weighting system:")
 var weighted = JSON.stringify(playerMatch(player1, player2));
 for (var key in player1.attrWeights){
-	player1.attrWeights[key] = 0;
-	player2.attrWeights[key] = 0;
+	player1.attrWeights[key] = 1;
+	player2.attrWeights[key] = 1;
 }
 var unweighted = JSON.stringify(playerMatch(player1, player2));
 
@@ -105,10 +106,11 @@ for (var key in player1.attrWeights){
 	player2.attrWeights[key] = weight;
 	weight += 1;
 }
+
+
 console.log("------------------");
 
 console.log("Testing no-match conditions.");
-//assertEquals(JSON.stringify([false, false]), JSON.stringify(playerMatch(player1, player3)), "It should never match players without any games in common.");
 player3.games= {
 			steam: [],
 			uplay: [],
