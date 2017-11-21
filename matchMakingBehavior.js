@@ -10,7 +10,7 @@ var playerMatch = function(player1, player2){
 				var result = dynamicMatch(player1[key], player2[key]);
 				// console.log(`Key: ${key} - Result: ${result}`)
 				if (result * 100 >= threshhold){
-					(matchHits[key]) ? matchHits[key] += 1 : matchHits[key] = 1;
+					(matchHits[key]) ? matchHits[key] += result : matchHits[key] = 1;
 				}
 			} else {
 				var result = primitiveMatch(player1[key], player2[key])
@@ -21,7 +21,7 @@ var playerMatch = function(player1, player2){
 			}
 		}
 	}
-	console.log(JSON.stringify(matchHits))
+	console.log(`Matches: ${JSON.stringify(matchHits)}`)
 	var results = evaluatePriorities(matchHits, player1.attrWeights, player2.attrWeights);
 	return results
 
