@@ -21,7 +21,7 @@ var playerMatch = function(player1, player2){
 			}
 		}
 	}
-	// console.log(JSON.stringify(matchHits))
+	console.log(JSON.stringify(matchHits))
 	var results = evaluatePriorities(matchHits, player1.attrWeights, player2.attrWeights);
 	return results
 
@@ -79,13 +79,16 @@ var evaluatePriorities = function(matches, p1prefs, p2prefs){
 	var p1total = 0;
 	var p2weighted = {};
 	var p2total = 0;
-	// console.log(matches)
+	//console.log(matches)
 	for (var key in p1prefs){
 		if (matches.hasOwnProperty(key)){
 			p1weighted[key] = matches[key] * p1prefs[key];
 			p2weighted[key] = matches[key] * p2prefs[key];
 		}
 	}
+
+	console.log(`P1: ${JSON.stringify(p1weighted)}`)
+	console.log(`P2: ${JSON.stringify(p2weighted)}`)
 
 	for (var key in p1weighted){ // reduce?
 		p1total += p1weighted[key];
