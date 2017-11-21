@@ -46,7 +46,6 @@ app.get('/gameDetails/:appid', function(httpRequest, httpResponse){
 	});
 });
 
-
 var port = 4000;
 var server = app.listen(port);
 console.log('Listening on port ' + port);
