@@ -1,17 +1,15 @@
 var assertEquals = function(expected, actual, testName){
 	if (actual == expected){
-		console.log('Passed ' + testName);
+		console.log('Passed - ' + testName);
 	} else {
 		console.log(`Failed ${testName}. Expected ${expected} got ${actual}.`);
 	}
 }
 
-assertEquals(JSON.stringify([true, true]), JSON.stringify(playerMatch(player3, player2)), "it matches player1 and player2");
-
-var player1 = new Player("Bingo");
-var player2 = new Player("Ognib");
-var player3 = new Player("Rutherford")
-
+var player1 = new Player("Bingo Dolores");
+var player2 = new Player("Ognib Jablanki");
+var player3 = new Player("Rutherford B. Rutherford")
+var players = [player1, player2, player3];
 
 player1.uname = "Bingo the Dingo";
 player1.steamId= "1234";
@@ -84,3 +82,21 @@ player3.attrWeights = {
 			typicalDuration: 1,
 			noMods: 6
 		}
+
+console.log("Testing self-matching:");
+for (var playerIdx = 0; playerIdx < players.length; playerIdx++){
+	assertEquals(JSON.stringify([true, true]), JSON.stringify(playerMatch(players[playerIdx], players[playerIdx])), 
+		`it always matches a player with him / herself. ${JSON.stringify(players[playerIdx].name)}`);
+}
+console.log("------------------");
+
+console.log("Testing attribute weighting system:")
+var weighted = JSON.stringify(playerMatch(player1, player2));
+for (var key in player1.attrWeights){
+	player1.attrWeights[key] = 0;
+	player2.attrWeights[key] = 0;
+}
+var unweighted = JSON.stringify(playerMatch(player1, player2));
+assertEquals(false, weighted == unweighted, "It gets different results for empty attrWeights array than default values.");
+
+console.log("------------------");
