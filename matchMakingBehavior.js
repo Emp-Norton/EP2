@@ -59,6 +59,7 @@ var dynamicMatch = function(p1obj, p2obj){
 			  gameCount += Math.max.apply(null, [p1obj[nestedIdx].length, p2obj[nestedIdx].length]);
 			}
 	}
+	if (matchAvgs.filter(Boolean).filter(item => item !== 0).length < 1) return 0
 	var result = matchAvgs.filter(Boolean).reduce((sum, num) => sum += num) / gameCount;
 	return result
 }
