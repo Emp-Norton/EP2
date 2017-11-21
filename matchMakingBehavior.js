@@ -23,7 +23,7 @@ var playerMatch = function(player1, player2){
 	}
 	console.log(JSON.stringify(matchHits))
 	var results = evaluatePriorities(matchHits, player1.attrWeights, player2.attrWeights);
-	console.log(results)
+	return results
 
 }
 
@@ -92,4 +92,5 @@ var evaluatePriorities = function(matches, p1prefs, p2prefs){
 	}
 
 	console.log(`Player 1 Matched? ${p1total >= 9}. Player 2 Matched? ${p2total >= 9}`)
+	return [(p1total >= 9), (p2total >= 9)]
 }
