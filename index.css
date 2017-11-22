@@ -1,0 +1,63 @@
+body {
+	background-image: url("media/game-bg.jpeg");
+ 	background-size: cover;
+}
+
+h1 {
+	color: white;
+}
+
+h2 {
+	text-align: center;
+}
+.below-fold {
+	position: absolute;
+	top: 100%;
+	background-color: white;
+	width: 100%;
+	display: inline-block;
+	border-radius: 5px;
+}
+
+.contact {
+	width: 100%;
+	position: fixed;
+	bottom: 2px;
+}
+
+.login-well {
+	display: inline-block;
+	margin-top: 15%;
+}
+
+.logo {
+	height: 25px;
+	width: 50px;
+}
+
+.page {
+	text-align: center;
+}
+
+.side-img {
+	height: 240px;
+	width: 300px;
+	border: solid 3px grey;
+	border-radius: 100%;
+	margin-left: 10%;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#side-img-text {
+	color: black;
+	font-size: 55px;
+	margin-left: 10%;
+}
+.title-header {
+  border: white double 2px;
+  border-radius: 25px 25px 0px 0px;
+  text-align: center;
+  width: 500px;
+  margin-left: 33% ;
+}
