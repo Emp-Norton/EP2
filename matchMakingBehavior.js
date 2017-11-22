@@ -5,7 +5,7 @@ var playerMatch = function(player1, player2){
 	var ignore = ["uname", "steamId", "uPlayId", "name", "attrWeights", "friends"];
 
 	for (var key in player1){
-		if (ignore.includes(key) == false){
+		if (!ignore.includes(key)){
 			if (typeof player1[key] == "object"){
 				var result = dynamicMatch(player1[key], player2[key]);
 				// console.log(`Key: ${key} - Result: ${result}`)
